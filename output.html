@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Blindfolded Attackers Still Threatening: Strict Black-Box Adversarial Attacks on Graphs (AAAI 2022 poster)</title>
+    <link rel="stylesheet" href="poster.css">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1">
+    <!-- Based on a poster template from https://github.com/cpitclaudel/academic-poster-template -->
+
+          <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+    
+          </head>
+
+  <body vocab="http://schema.org/" typeof="ScholarlyArticle">
+    <header role="banner">
+      <aside>
+        <a href="https://github.com/galina0217/stack"><img src="aaai/" alt=""></a>
+      </aside>
+      <div>
+        <h1 property="headline">Blindfolded Attackers Still Threatening:</h1>
+                  <h2 property="alternativeHeadline">Strict Black-Box Adversarial Attacks on Graphs</h2>
+                <address>
+          <a property="author">Jiarong Xu<sup>1</sup></a>,
+<a property="author">Yizhou Sun<sup>2</sup></a>,
+<a property="author">Xin Jiang<sup>2</sup></a>,
+<a property="author">Yanhao Wang<sup>1</sup></a>,
+<a property="author">Chunping Wang<sup>3</sup></a>,
+<a property="author">Jiangang Lu<sup>1</sup></a>, and
+<a property="author">Yang Yang<sup>1</sup></a>
+ | <a property="sourceOrganization">Zhejiang University<sup>1</sup>, UCLA<sup>2</sup>, FinVolution Group<sup>3</sup></a>
+        </address>
+        <span class="publication-info">
+                      <span property="publisher">AAAI 2022</span>,
+            <time pubdate property="datePublished" datetime="2020-06-18">June 18, 2020</time>
+                  </span>
+      </div>
+      <aside>
+        <a href="https://www.zju.edu.cn/english/"><img src="aaai/zju.png" alt="ZJU logo"></a>
+<a href="https://www.ucla.edu/"><img src="aaai/ucla.png" alt="UCLA logo"></a>
+<a href="https://ir.finvgroup.com/"><img src="aaai/finvolution.png" alt="FinVolution logo"></a>
+      </aside>
+    </header>
+
+    <main property="articleBody">
+      <!-- <article property="abstract">
+    <header><h3>Abstract</h3></header>
+
+    <p>Adversarial attacks on graphs have attracted considerable research interests. Existing works assume the attacker is either (partly) aware of the victim model, or able to send queries to it.
+These assumptions are, however, unrealistic. To bridge the gap between theoretical graph attacks and real-world scenarios, in this work, we propose a novel and more realistic setting:
+strict black-box graph attack, in which the attacker has no knowledge about the victim model at all and is not allowed to
+send any queries. </p>
+    <p>To design such an attack strategy, we first propose a generic graph filter to unify different families of graph-based models. The strength of attacks can then be quantified by the change in the graph filter before and after attack.
+By maximizing this change, we are able to find an effective attack strategy, regardless of the underlying model. To solve this optimization problem, we also propose a relaxation technique and approximation theories to reduce the difficulty as
+well as the computational expense. </p>
+    <p>Experiments demonstrate that, even with no exposure to the model, the Macro-F1 drops 5.5% in node classification and 29.5% in graph classification,
+which is a significant result compared with existent works.</p>
+  </article> -->
+
+<!-- <article style="width: calc(100% / 6 - 1rem);">
+  <header>
+    <h3>Contributions</h3>
+  </header>
+  <ul>
+    <li>We proposed an a strict black-box setting for adversarial attacks on graphs.</li>
+    <li>A generic graph ﬁlter is proposed to unify different families of graph models.</li>
+    <li>Eigenvalue and eigenvector approximation theories are introduced to reduce computational cost.</li>
+  </ul>
+</article> -->
+
+<article>
+  <header>
+    <h3>Motivation</h3>
+  </header>
+
+  <ul>
+    <li>Graph machine learning have achieved signiﬁcant success. However, they have been shown to be vulnerable to
+      adversarial examples.</li>
+    <li>Existing works assume the attacker is either (partly) aware of the victim model, or able to send queries to it.
+      These assumptions are, however, unrealistic.</li>
+    <li>To bridge the gap between theoretical graph attacks and real-world scenarios, we propose a <span
+        class="highlighted">strict black-box graph attack</span>,
+      where:
+      <ul>
+        <li>Attacker cannot fetch even the <span class="highlighted">basic information about the victim model</span>
+        </li>
+        <li>Attacker cannot <span class="highlighted">query the victim model </span>
+        </li>
+      </ul>
+    </li>
+
+    <div class="center">
+      <img style="width: 60%" src="aaai/cate.png" alt="" />
+    </div>
+
+  </ul>
+
+
+
+</article>
+
+<article>
+  <header>
+    <h3>Method Overview</h3>
+  </header>
+
+  <img style="width: 100%" src="aaai/method.png" alt="" />
+</article>
+
+
+
+<article>
+  <header>
+    <h3>Challenges & Solutions</h3>
+  </header>
+  <ul>
+    <li>
+      Most existing graph attack strategies are model-speciﬁc
+      <strong>→</strong><i class="highlighted"> How to identify a common cornerstone for various types
+        of graph-based models?</i>
+
+      <div class="columns-center" style="grid-template-columns: 40fr 60fr; margin: 1rem">
+        <div>
+          <span class="boxed">Generic graph filter</span>
+        </div>
+        <div>
+          
+          $$
+          S=D^{-\alpha} A D^{-1+\alpha}, \alpha \in[0,1]
+          $$
+                  </div>
+      </div>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      With no access to the queries and the correct labels, we can neither measure the quality of predictions, nor refer
+      to a surrogate model
+      <strong>→</strong><i class="highlighted"> How to effectively quantify and efﬁciently compute the
+        strength of graph attacks？</i>
+      <div class="center">
+        <img style="width: 100%" src="aaai/optimization.png" alt="" />
+      </div>
+      <div class="columns-center" style="grid-template-columns: 52fr 1fr 47fr; margin: 1rem">
+        <div>
+          <span class="boxed">Eigenvalue Perturbation Theory </span>
+        </div>
+        <div>
+          $$\mathcal{O}(1)$$        </div>
+        <div>
+          for approximating eigenvalue
+        </div>
+      </div>
+      <div class="columns-center" style="grid-template-columns: 49fr 1fr 50fr; margin: 1rem">
+        <div>
+          <span class="boxed">Power Iteration </span>
+        </div>
+        <div>
+          $$\mathcal{O}(N)$$        </div>
+        <div>
+          for approximating eigenvector
+        </div>
+      </div>
+      </div>
+    </li>
+
+  </ul>
+  <ul>
+    <li>
+      As more edges are ﬂipped, the eigen-solution approximation leads to serious error accumulation
+      <strong>→</strong><i class="highlighted"> How
+        to prevent the error accumulation?</i>
+
+      <div class="columns-center" style="grid-template-columns: 40fr 60fr; margin: 1rem">
+        <div>
+          <span class="boxed">Restart Machanism</span>
+        </div>
+        <div>
+          
+          $$
+          \epsilon=\frac{1}{N(N-1)} \sum_{i=1}^{N} \sum_{j \neq i}\left|M_{i j}\right|
+          $$
+                  </div>
+      </div>
+      <div class="center">
+        <i> verify whether the eigenvectors have been adequately approximated</i>
+      </div>
+    </li>
+  </ul>
+
+
+</article>
+
+<article style="width: calc(100% / 3 - 1rem);">
+  <header>
+    <h3>Experimental Results</h3>
+  </header>
+
+  <div>
+    <h4>Node Classification</h4>
+    Macro-F1
+    <span class="highlighted">↓5.5%</span> with no exposure to the target model
+    <img style="width: 100%" src="aaai/node.png" alt="" />
+  </div>
+
+  <div>
+    <div class="columns-center" style="grid-template-columns: 27fr 73fr">
+      <div>
+        <h4>Graph Classification</h4>
+        Macro-F1 <span class="highlighted">↓29.5%</span> with no exposure to the target model
+      </div>
+      <img style="width: 100%" src="aaai/graph.png" alt="" />
+    </div>
+  </div>
+
+  <div>
+
+    <div class="columns-center" style="grid-template-columns: 45fr 55fr">
+      <div>
+        <h4>Attack with increasing pert. rate</h4>
+        Do more damage to GCN as pert. rate increases while still achieving best performance
+      </div>
+      <img style="width: 100%" src="aaai/pertrate.png" alt="" />
+    </div>
+  </div>
+
+  <div>
+
+    <div class="columns-center" style="grid-template-columns: 58fr 42fr">
+      <div>
+        <h4>Attack against various defensive models</h4>
+        Outperform GPGD in terms of its ability to attack the defensive models
+      </div>
+      <img style="width: 100%" src="aaai/defense.png" alt="" />
+    </div>
+  </div>
+
+  <div>
+
+    <div class="columns-center" style="grid-template-columns: 60fr 40fr; ">
+      <!-- <div><strong>Attack against various defensive models</strong>
+      <img style="width: 100%" src="aaai/defense.png" alt="" />
+    </div> -->
+      <div>
+        <h4>Ext. when additional knowledge is available</h4>
+        Prediction conﬁdence <span class="highlighted">↓4.8%</span> and misclassiﬁcation rate <span
+          class="highlighted">↑4.2%</span> with naive
+        extension
+        of our method
+      </div>
+      <div>
+        <img style="width: 100%" src="aaai/extension.png" alt="" />
+      </div>
+    </div>
+  </div>
+
+</article>
+
+    </main>
+
+    <footer>
+      <address class="monospace"><a href="https://github.com/galina0217/stack">https://github.com/galina0217/stack</a>
+</address>
+      <address class="monospace">{xujr, wangyanhao, lujg, yangya}@zju.edu.cn, yzsun@cs.ucla.edu, jiangxjames@ucla.edu, wangchunping02@xinye.com
+</address>
+                </footer>
+  </body>
+</html>
