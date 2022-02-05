@@ -14,5 +14,5 @@ Modern HTML+CSS is more than enough for most academic posters:
 
 See it in action `on a real example <https://cpitclaudel.github.io/academic-poster-template/koika/poster.html>`__ and `follow the tutorial <https://cpitclaudel.github.io/academic-poster-template/tutorial/poster.html>`__ to create your own posters.
 
-Usage
+Usage:
 :code:`python render.py aaai.jinja2 output.html`
